@@ -1,0 +1,31 @@
+{
+  "name": "gql-boilerplate",
+  "version": "1.0.0",
+  "description": "ApolloServer GQL Boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -r esm src/server.js",
+    "migrate:make": "knex --knexfile knexfile.js migrate:make",
+    "migrate:run": "knex --knexfile knexfile.js migrate:latest",
+    "migrate:rollback": "knex --knexfile knexfile.js migrate:rollback",
+    "migrate:status": "knex --knexfile knexfile.js migrate:status",
+    "seed:make": "knex --knexfile knexfile.js seed:make",
+    "seed": "knex --knexfile knexfile.js seed:run"
+  },
+  "author": "brunojkurt",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.21.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "graphql": "^15.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.18",
+    "pg": "^8.5.1",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
