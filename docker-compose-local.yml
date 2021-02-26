@@ -1,0 +1,90 @@
+version: '3'
+
+networks:
+  main:
+
+services:
+  proxy:
+    networks:
+      main:
+        aliases:
+          - "${PROXY_URL}"
+    container_name: "${PROXY_URL}"
+    image: jwilder/nginx-proxy:alpine
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "./proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
+    ports:
+      - "${HTTP_PORT}:${HTTP_PORT}"
+      - "${HTTPS_PORT}:${HTTPS_PORT}"
+    restart: unless-stopped
+
+  db:
+    networks:
+      main:
+        aliases:
+          - "${DB_URL}"
+    container_name: "${DB_URL}"
+    image: postgres:12.4-alpine
+    volumes:
+      - "./.data:/var/lib/postgresql/data:rw"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+    restart: unless-stopped
+
+  api:
+    networks:
+      main:
+        aliases:
+          - "${API_URL}"
+    container_name: "${API_URL}"
+    image: nodejs-knex
+    volumes:
+      - "./api:/opt/app-root/src:rw"
+    ports:
+      - "5000:${API_PORT}"
+    environment:
+      TZ: "${TZ}"
+      VIRTUAL_HOST: "${API_URL}"
+      VIRTUAL_PORT: ${API_PORT}
+      API_URL: "${API_URL}"
+      PORT: ${API_PORT}
+      APP_ENV: "${ENVIRONMENT}"
+      NODE_ENV: "${ENVIRONMENT}"
+      TOKEN_SECRET: "${TOKEN_SECRET}"
+      EMAIL_FROM: "${EMAIL_FROM}"
+      SPA_URL: "${SPA_URL}"
+      DB_DRIVER: "${DB_DRIVER}"
+      DB_PORT: "${DB_PORT}"
+      DB_HOST: "${DB_URL}"
+      DB_USER: "${DB_USER}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_DATABASE: "${DB_DATABASE}"
+      DEBUG: "true"
+    command: ['./wait-for-it.sh', '-t', '0', '${DB_URL}:5432', '--', 'bin/assemble']
+    restart: unless-stopped
+
+  spa:
+    networks:
+      main:
+        aliases:
+          - "${SPA_URL}"
+    container_name: "${SPA_URL}"
+    image: nodejs-react
+    volumes:
+      - "./spa:/opt/app-root/src:rw"
+    ports:
+      - ${HTTP_PORT}
+    environment:
+      VIRTUAL_HOST: "${SPA_URL}"
+      VIRTUAL_PORT: ${HTTP_PORT}
+      PORT: "${HTTP_PORT}"
+      APP_ENV: "${ENVIRONMENT}"
+      NODE_ENV: "${ENVIRONMENT}"
+      API_URL: 'http://${API_URL}/'
+      WS_URL: 'ws://${API_URL}/graphql'
+      DEBUG: "true"
+    command: ['./wait-for-it.sh', '-t', '0', '${API_URL}:${API_PORT}', '--', 'bin/assemble']
+    restart: unless-stopped

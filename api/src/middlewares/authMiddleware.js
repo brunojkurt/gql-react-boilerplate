@@ -1,6 +1,5 @@
 import { ApolloError } from 'apollo-server'
 import jwt from 'jsonwebtoken'
-require('dotenv').config()
 
 const authMiddleware = (req) => {
   const auth = req.headers.authorization

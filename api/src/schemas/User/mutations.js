@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import hash, { compare } from '../../utils/hash'
-require('dotenv').config()
 
 class UserMutation {
   async register(source, params, ctx) {

@@ -1,10 +1,9 @@
 const path = require('path')
-require('dotenv').config()
 
 //npx knex migrate:latest --knexfile knexfile.ts migrate:latest
 //npx knex migrate:rollback --knexfile knexfile.ts migrate:rollback
 
-const use = process.env.DB_DRIVER || 'sqlite'
+const use = process.env.DB_DRIVER || 'pg'
 
 const connections = {
   sqlite: {

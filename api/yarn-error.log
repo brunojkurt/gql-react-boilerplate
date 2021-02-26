@@ -1,0 +1,56 @@
+Arguments: 
+  /home/brunokurt/.nvm/versions/node/v14.15.1/bin/node /home/brunokurt/.nvm/versions/node/v14.15.1/bin/yarn install
+
+PATH: 
+  /home/brunokurt/.nvm/versions/node/v14.15.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/brunokurt/Android/Sdk/emulator:/home/brunokurt/Android/Sdk/tools:/home/brunokurt/Android/Sdk/tools/bin:/home/brunokurt/Android/Sdk/platform-tools:/home/brunokurt/android-studio/bin:/home/brunokurt/Android/Sdk/emulator:/home/brunokurt/Android/Sdk/tools:/home/brunokurt/Android/Sdk/tools/bin:/home/brunokurt/Android/Sdk/platform-tools:/home/brunokurt/android-studio/bin:/home/brunokurt/Android/Sdk/emulator:/home/brunokurt/Android/Sdk/tools:/home/brunokurt/Android/Sdk/tools/bin:/home/brunokurt/Android/Sdk/platform-tools:/home/brunokurt/android-studio/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.15.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EACCES: permission denied, unlink '/home/brunokurt/Documents/Projects/gql-react-boilerplate/api/node_modules/.yarn-integrity'
+
+npm manifest: 
+  {
+    "name": "gql-boilerplate",
+    "version": "1.0.0",
+    "description": "ApolloServer GQL Boilerplate",
+    "main": "index.js",
+    "scripts": {
+      "start": "node -r esm src/server.js",
+      "dev": "nodemon -r esm src/server.js",
+      "migrate:make": "knex --knexfile knexfile.js migrate:make",
+      "migrate:run": "knex --knexfile knexfile.js migrate:latest",
+      "migrate:rollback": "knex --knexfile knexfile.js migrate:rollback",
+      "migrate:status": "knex --knexfile knexfile.js migrate:status",
+      "seed:make": "knex --knexfile knexfile.js seed:make",
+      "seed": "knex --knexfile knexfile.js seed:run"
+    },
+    "author": "brunojkurt",
+    "license": "ISC",
+    "dependencies": {
+      "apollo-server": "^2.21.0",
+      "bcryptjs": "^2.4.3",
+      "esm": "^3.2.25",
+      "graphql": "^15.5.0",
+      "jsonwebtoken": "^8.5.1",
+      "knex": "^0.21.18",
+      "pg": "^8.5.1",
+      "sqlite3": "^5.0.2"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.7"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
