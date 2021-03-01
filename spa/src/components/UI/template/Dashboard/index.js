@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Toolbar, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import { AppBar, Toolbar, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { IoIosHome, IoMdMenu } from 'react-icons/io'
-import { Root, Drawer, AppBar, RightPanel, Content } from './styles'
+import { Root, Drawer, RightPanel, Content } from './styles'
 
 const Dashboard = (props) => {
-  const { title } = props
+  const { title, children } = props
   const [open, setOpen] = useState(false)
 
   const drawerWidth = 240
@@ -44,9 +44,7 @@ const Dashboard = (props) => {
           </Toolbar>
         </AppBar>
         <Content>
-          <h1>
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        </h1>
+          { children }
         </Content>
       </RightPanel>
     </Root>

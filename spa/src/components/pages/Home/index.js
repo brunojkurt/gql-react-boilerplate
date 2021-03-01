@@ -1,10 +1,7 @@
 import React from 'react'
-import { Dashboard } from '../../UI'
 
 const Home = () => {
-  return (
-    <Dashboard />
-  )
+  return <h1>Home</h1>
 }
 
 export default Home

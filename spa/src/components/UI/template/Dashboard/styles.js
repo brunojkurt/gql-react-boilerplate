@@ -1,24 +1,17 @@
 import styled from 'styled-components'
-import { AppBar as AppBarBase, Drawer as DrawerBase } from '@material-ui/core'
+import { Drawer as DrawerBase } from '@material-ui/core'
 
 export const Root = styled.div`
   display: flex;
   flex-direction: row;
   width: 100vw;
   height: 100vh;
-  overflow-y: hidden;
+  position: relative;
+  overflow: hidden;
 `
 export const RightPanel = styled.div`
-  
-`
-export const AppBar = styled(AppBarBase)`
-  @media (max-width: 600px) {
-    float: right;
-    transform: ${(props) => `translateX${props.$drawerWidth}px)`};
-  }
-  @media (min-width: 601px) {
-    flex: 1;
-  }
+  flex-grow: 1;
+  min-width: 0;
 `
 export const Drawer = styled(DrawerBase)`
   .MuiDrawer-paperAnchorLeft{
@@ -39,5 +32,8 @@ export const Drawer = styled(DrawerBase)`
   }
 `
 export const Content = styled.div`
-  background-color: #CCC;
+  width: 100%;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  overflow: scroll;
 `

@@ -3,6 +3,8 @@ export const UserDomain = `
     id: ID
     name: String
     email: String
+    created_at: Date
+    updated_at: Date
   }
 
   type AuthenticationData {

@@ -78,11 +78,30 @@ class UserMutation {
   }
 
   async update(source, params, ctx) {
+    const { id, userData } = params
 
+    const user = await ctx.db('users')
+      .returning(['id', 'name', 'email'])
+      .update(userData)
+      .where('id', id)
+      .then(data => data[0])
+      .catch(err => {
+        ctx.errorHandling('Internal server error', 'user_update', err)
+      })
+    
+    return user
   }
 
   async delete(source, params, ctx) {
-    
+    const { id } = params
+
+    await ctx.db('users')
+      .where('id', id)
+      .del()
+      .then(() => true)
+      .catch(err => {
+        ctx.errorHandling('Internal server error', 'user_update', err)
+      })
   }
 }
 
