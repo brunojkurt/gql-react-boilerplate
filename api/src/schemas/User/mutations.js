@@ -3,10 +3,11 @@ import hash, { compare } from '../../utils/hash'
 
 class UserMutation {
   async register(source, params, ctx) {
-    const { name, email, password } = params
+    const { userData } = params
+    const { name, email, password } = userData
 
     const user = await ctx.db('users')
-      .returning(['id', 'name', 'email'])
+      .returning(['*'])
       .insert({
         name,
         email,

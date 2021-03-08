@@ -12,6 +12,7 @@ const resolvers = {
     UserById: userQuery.getById
   },
   Mutation: {
+    UserRegister: userMutation.register,
     UserAuthenticate: userMutation.authenticate,
     UserCreate: userMutation.create,
     UserUpdate: userMutation.update,
