@@ -44,6 +44,7 @@ services:
           - "${API_URL}"
     build:
       context: ./api
+    command: sh -c "yarn migrate:run && yarn seed && yarn dev"
     container_name: "${API_URL}"
     volumes:
       - "./api:/usr/app"
@@ -78,6 +79,7 @@ services:
           - "${SPA_URL}"
     build: 
       context: ./spa
+    command: sh -c "yarn dev"
     container_name: "${SPA_URL}"
     volumes:
       - "./spa:/usr/app"
