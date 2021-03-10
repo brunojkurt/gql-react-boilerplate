@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect, Route } from 'react-router-dom'
 import { useAuthContext } from '../../store/auth'
 
-const PrivateRoute = ({ component, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
   const { token } = useAuthContext()
   return (
     <Route

@@ -23,14 +23,15 @@ const AuthProvider = ({ children }) => {
   }, [])
 
   const login = (user, token) => {
+    setState({ user, token })
     localStorage.setItem('user', JSON.stringify(user))
     localStorage.setItem('token', token)
   }
 
   const logout = () => {
+    setState({})
     localStorage.removeItem('user')
     localStorage.removeItem('token')
-    setState({})
   }
 
   const isAuthenticated = () => {
