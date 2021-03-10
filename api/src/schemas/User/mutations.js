@@ -7,7 +7,7 @@ class UserMutation {
     const { name, email, password } = userData
 
     const user = await ctx.db('users')
-      .returning(['*'])
+      .returning(['id, name, email'])
       .insert({
         name,
         email,

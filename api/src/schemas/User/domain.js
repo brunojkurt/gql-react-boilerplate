@@ -33,18 +33,18 @@ export const UserMutations = `
   ): User
 
   UserUpdate(
-    id: ID
+    id: ID!
     userData: UserDataInputs
   ): User
 
   UserDelete(
-    id: ID
+    id: ID!
   ): Boolean
 `
 export const UserQuerys = `
   Users: [User]
 
   UserById(
-    id: ID
+    id: ID!
   ): User
 `
