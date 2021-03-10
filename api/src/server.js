@@ -16,16 +16,6 @@ const server = new ApolloServer({ ...schemas,
       user: payload
     }
   },
-  formatError: (error) => {
-    delete error.extensions.exception.stacktrace
-    const errorlog = {
-      message: error.message,
-      code: error.extensions.code,
-      Path: error.path ? error.path[0] : null
-    }
-    console.error('\x1b[31m%s\x1b[0m', `[${'s'}] ERROR: Server: ${JSON.stringify(errorlog)}`)
-    return errorlog
-  },
   subscriptions: {
     onConnect: (connectionParams) => {
       const { Authorization } = connectionParams
