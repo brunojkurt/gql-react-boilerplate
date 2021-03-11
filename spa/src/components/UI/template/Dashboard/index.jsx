@@ -33,6 +33,7 @@ const Dashboard = (props) => {
           drawerwidth={drawerWidth}>
           <LogoWrapper>
             <Typography
+              color="primary"
               variant="h6"
               align="center">
               {open ? 'GQL-BOILERPLATE' : 'GQL'}
@@ -44,10 +45,12 @@ const Dashboard = (props) => {
               selected={useLocation().pathname === '/dashboard'}
               onClick={() => history.push('/dashboard')}>
               <ListItemIcon>
-                <IoIosHome size={24}/>
+                <IoIosHome color={palette.primary.main} size={24}/>
               </ListItemIcon>
               <ListItemText>
-                Início
+                <Typography color="primary">
+                    Início
+                </Typography>
               </ListItemText>
             </ListItem>
             { routes.map(route => (
@@ -57,10 +60,14 @@ const Dashboard = (props) => {
                 selected={useLocation().pathname === `/dashboard/${route.url}`}
                 onClick={() => history.push(`/dashboard/${route.url}`)}>
                 <ListItemIcon>
-                  {route.icon}
+                  <Typography color="primary">
+                    {route.icon}
+                  </Typography>
                 </ListItemIcon>
                 <ListItemText>
-                  {route.label}
+                  <Typography color="primary">
+                    {route.label}
+                  </Typography>
                 </ListItemText>
               </ListItem>
             ))}
@@ -76,7 +83,7 @@ const Dashboard = (props) => {
               <IconButton
                 onClick={() => setOpen(!open)}
                 edge="start"
-                color="default"
+                color="primary"
                 aria-label="menu">
                 <FiMenu size={22} />
               </IconButton>
@@ -87,7 +94,7 @@ const Dashboard = (props) => {
                 <IconButton
                   onClick={() => logout()}
                   edge="end"
-                  color="default"
+                  color="primary"
                   aria-label="logout">
                   <FiLogOut size={20} />
                 </IconButton>

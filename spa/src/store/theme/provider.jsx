@@ -15,13 +15,25 @@ const CustomThemeProvider = ({ children }) => {
 
   const light = createMuiTheme({
     palette: {
-      type: 'light'
+      type: 'light',
+      primary: {
+        main: '#00072d'
+      },
+      secondary: {
+        main: '#0a2472',
+      }
     }
   })
 
   const dark = createMuiTheme({
     palette: {
-      type: 'dark'
+      type: 'dark',
+      primary: {
+        main: '#FFF'
+      },
+      secondary: {
+        main: '#FFF000',
+      },
     }
   })
 
