@@ -48,6 +48,7 @@ services:
     container_name: "${API_URL}"
     volumes:
       - "./api:/usr/app"
+      - "/usr/app/node_modules"
     ports:
       - "5000:${API_PORT}"
     environment:
@@ -83,6 +84,7 @@ services:
     container_name: "${SPA_URL}"
     volumes:
       - "./spa:/usr/app"
+      - "/usr/app/node_modules"
     ports:
       - "${HTTP_PORT}"
     environment:

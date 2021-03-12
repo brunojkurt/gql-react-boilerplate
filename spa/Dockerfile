@@ -2,9 +2,10 @@ FROM node:alpine
 
 WORKDIR /usr/app
 
-COPY package*.json ./
-COPY yarn.lock ./
+ENV PATH usr/app/node_modules/.bin:$PATH
 
-RUN yarn install
+COPY package*.json ./
+
+RUN npm install
 
 COPY . .
