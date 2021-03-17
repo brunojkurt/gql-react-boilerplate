@@ -1,5 +1,5 @@
 const Knex = require('knex')
-const knexConfig = require('../../knexfile')
+const knexConfig = require('../../../knexfile')
 import setupPaginate from './utils/paginator'
 
 setupPaginate(Knex)

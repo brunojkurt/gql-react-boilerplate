@@ -36,11 +36,11 @@ const connections = {
     },
 
     migrations: {
-      directory: path.resolve(__dirname, 'src', 'database', 'migrations')
+      directory: path.resolve(__dirname, 'migrations')
     },
 
     seeds: {
-      directory: path.resolve(__dirname, 'src', 'database', 'seeds')
+      directory: path.resolve(__dirname, 'seeds')
     },
 
     debug: process.env.DB_DEBUG || false
