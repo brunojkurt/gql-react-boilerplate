@@ -1,18 +1,26 @@
 import { ApolloServer } from 'apollo-server'
+import jwt from 'jsonwebtoken'
 import schemas from '../../schemas'
 import authMiddleware from './core/middlewares/authMiddleware'
 import db from '../../infra/database/connection'
 import errorHandling from './core/errorHandling'
+import hash, { compare as hashCompare } from './core/hash'
 
 const environment = process.env.NODE_ENV
 
 const server = new ApolloServer({ ...schemas,
   context: ({ req, connection }) => {
     const { payload } = authMiddleware(req)
+    const methods = {
+      jwt,
+      hash,
+      hashCompare,
+      errorHandling
+    }
     
     return {
       db,
-      errorHandling,
+      methods,
       user: payload
     }
   },

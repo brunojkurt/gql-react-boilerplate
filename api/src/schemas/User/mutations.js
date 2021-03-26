@@ -1,50 +1,35 @@
-import jwt from 'jsonwebtoken'
-import hash, { compare } from '../../utils/hash'
+import { save, update, remove, get } from './infra'
 
 class UserMutation {
   async register(source, params, ctx) {
     const { userData } = params
-    const { name, email, password } = userData
-
-    const user = await ctx.db('users')
-      .returning(['id, name, email'])
-      .insert({
-        name,
-        email,
-        password: await hash(password)
-      })
-      .then(data => data[0])
-      .catch(err => {
-        ctx.errorHandling('Internal server error', 'user_register', err)
-      })
+    
+    const user = await save(userData, ctx)
 
     const secret = `${process.env.TOKEN_SECRET}`
 
     if (!secret) {
-      ctx.errorHandling('No token secret provided', 'user_register')
+      ctx.methods.errorHandling('No token secret provided', 'user_register')
     }
 
-    const token = jwt.sign(user, secret)
+    const token = ctx.jwt.sign(user, secret)
 
     return { user, token }
   }
 
   async authenticate(source, params, ctx) {
     const { email, password } = params
-    
-    const user = await ctx.db('users')
-      .select('*')
-      .where('email', email)
-      .first()
+
+    const user = await get(ctx, { email, first: true })
 
     if (!user) {
-      ctx.errorHandling('The provided e-mail was not found in the records.', 'user_authenticate')
+      ctx.methods.errorHandling('The provided e-mail was not found in the records.', 'user_authenticate')
     }
 
-    const validatePassword = await compare(password, user.password)
+    const validatePassword = await ctx.methods.hashCompare(password, user.password)
 
     if (!validatePassword) {
-      ctx.errorHandling('Invalid password.', 'user_authenticate')
+      ctx.methods.errorHandling('Invalid password.', 'user_authenticate')
     }
 
     const secret = `${process.env.TOKEN_SECRET}`
@@ -55,25 +40,15 @@ class UserMutation {
       email: user.email
     }
     
-    const token = jwt.sign(userData, secret)
+    const token = ctx.methods.jwt.sign(userData, secret)
 
     return { user: userData, token }
   }
 
   async create(source, params, ctx) {
-    const { name, email, password } = params
+    const { userData } = params
 
-    const user = await ctx.db('users')
-      .returning(['id', 'name', 'email'])
-      .insert({
-        name,
-        email,
-        password: await hash(password)
-      })
-      .then(data => data[0])
-      .catch(err => {
-        ctx.errorHandling('Internal server error', 'user_create', err)
-      })
+    const user = await save(userData, ctx)
     
     return user
   }
@@ -81,28 +56,16 @@ class UserMutation {
   async update(source, params, ctx) {
     const { id, userData } = params
 
-    const user = await ctx.db('users')
-      .returning(['id', 'name', 'email'])
-      .update(userData)
-      .where('id', id)
-      .then(data => data[0])
-      .catch(err => {
-        ctx.errorHandling('Internal server error', 'user_update', err)
-      })
-    
+    const user = await update(id, userData, ctx)
+
     return user
   }
 
   async delete(source, params, ctx) {
     const { id } = params
 
-    await ctx.db('users')
-      .where('id', id)
-      .del()
-      .then(() => true)
-      .catch(err => {
-        ctx.errorHandling('Internal server error', 'user_update', err)
-      })
+    const del = await remove(id, ctx)
+    return del
   }
 }
 
