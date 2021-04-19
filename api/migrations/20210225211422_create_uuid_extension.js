@@ -4,5 +4,5 @@ exports.up = async function(knex) {
 };
 
 exports.down = function(knex) {
-  
+  knex.raw('drop extension if exists "uuid-ossp"');
 };
