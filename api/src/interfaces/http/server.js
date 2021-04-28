@@ -1,27 +1,22 @@
 import { ApolloServer } from 'apollo-server'
-import jwt from 'jsonwebtoken'
 import schemas from '../../schemas'
-import authMiddleware from './core/middlewares/authMiddleware'
 import db from '../../infra/database/connection'
-import errorHandling from './core/errorHandling'
-import hash, { compare as hashCompare } from './core/hash'
+import * as core from './core'
 
 const environment = process.env.NODE_ENV
 
 const server = new ApolloServer({ ...schemas,
   context: ({ req, connection }) => {
-    const { payload } = authMiddleware(req)
+    const { authMiddleware, ...coreMethods } = core
+    const user = authMiddleware(req)
     const methods = {
-      jwt,
-      hash,
-      hashCompare,
-      errorHandling
+      ...coreMethods
     }
-    
+
     return {
       db,
       methods,
-      user: payload
+      user
     }
   },
   subscriptions: {
@@ -35,11 +30,12 @@ const server = new ApolloServer({ ...schemas,
     keepAlive: 2 * 1000
   },
   introspection: environment !== 'production',
-  playground: environment !== 'production'
+  playground: environment !== 'production',
+  debug: environment !== 'production'
 })
 
 server.start = () => {
-  server.listen(process.env.API_PORT || 5000, '0.0.0.0').then(({ url }) => {
+  server.listen(process.env.API_PORT || 5000, '0.0.0.0').then(() => {
     console.log('\x1b[36m%s\x1b[0m', `SERVERINIT: 👍 GraphQL API ready! 👍`)
     console.log('\x1b[37m%s\x1b[0m', 'SERVERINIT: 🚀 Subscriptions ready! 🚀')
   })

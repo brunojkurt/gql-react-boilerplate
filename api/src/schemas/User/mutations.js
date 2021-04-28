@@ -1,4 +1,4 @@
-import { save, update, remove, get } from './infra'
+import { save, update, remove, get, getUserPermissions } from './infra'
 
 class UserMutation {
   async register(source, params, ctx) {
@@ -6,13 +6,14 @@ class UserMutation {
     
     const user = await save(userData, ctx)
 
-    const secret = `${process.env.TOKEN_SECRET}`
+    const permissions = await getUserPermissions(user.role_id)
 
-    if (!secret) {
-      ctx.methods.errorHandling('No token secret provided', 'user_register')
-    }
-
-    const token = ctx.jwt.sign(user, secret)
+    const token = ctx.methods.signToken({ 
+      id: user.id,
+      name: user.name,
+      email: user.email,  
+      permissions
+    })
 
     return { user, token }
   }
@@ -32,17 +33,16 @@ class UserMutation {
       ctx.methods.errorHandling('Invalid password.', 'user_authenticate')
     }
 
-    const secret = `${process.env.TOKEN_SECRET}`
+    const permissions = await getUserPermissions(user.role_id)
 
-    const userData = {
+    const token = ctx.methods.signToken({ 
       id: user.id,
       name: user.name,
-      email: user.email
-    }
-    
-    const token = ctx.methods.jwt.sign(userData, secret)
+      email: user.email,  
+      permissions
+    })
 
-    return { user: userData, token }
+    return { user, token }
   }
 
   async create(source, params, ctx) {
@@ -65,6 +65,7 @@ class UserMutation {
     const { id } = params
 
     const del = await remove(id, ctx)
+    
     return del
   }
 }

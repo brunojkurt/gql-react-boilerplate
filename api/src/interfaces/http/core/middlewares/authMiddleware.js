@@ -1,14 +1,10 @@
-import { ApolloError } from 'apollo-server'
-import jwt from 'jsonwebtoken'
+import { verifyToken } from '..'
 
 const authMiddleware = (req) => {
   const auth = req.headers.authorization
 
   if (!auth) {
-    return {
-      token: null,
-      payload: null
-    }
+    return null
   }
 
   const parts = auth.split(' ')
@@ -22,18 +18,9 @@ const authMiddleware = (req) => {
     throw new ApolloError('Token malformatted.', 401)
   }
 
-  try {
-    const secret = process.env.TOKEN_SECRET
-    const payload = jwt.verify(token, secret)
-
-    return {
-      token,
-      payload
-    }
-    
-  } catch (err) {
-    throw new ApolloError('Invalid Authorization Token.', 401, err)
-  }
+  const user = verifyToken(token)
+  
+  return user
 }
 
 export default authMiddleware

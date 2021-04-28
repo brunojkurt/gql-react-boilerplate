@@ -4,6 +4,6 @@ export default async (id, ctx) => {
     .del()
     .then(() => true)
     .catch(err => {
-      ctx.methods.errorHandling('Internal server error', 'user_update', err)
+      ctx.methods.errorHandling('Internal server error', 'user_remove', err)
     })
 }

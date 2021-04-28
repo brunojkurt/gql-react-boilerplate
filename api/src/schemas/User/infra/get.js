@@ -1,15 +1,15 @@
 export default async (ctx, filters = {}) => {
-  const query = await ctx.db('users')
+  const query = ctx.db('users')
     .where(builder => {
-      if (filters.id) {
-        builder.where('id', filters.id)
-      }
-      if (filters.email) {
-        builder.where('email', filters.email)
-      }
+      filters.id && builder.where('id', filters.id)
+      filters.email && builder.where('email', filters.email)
+    })
+    .where(builder => {
+      !filters.withTrashed && builder.whereNull('deleted_at')
+      filters.onlyTrashed && builder.whereNotNull('deleted_at')
     })
 
-  const users = query.then(data => {
+  const users = await query.then(data => {
     if (filters.first) {
       return !!data.length ? data[0] : null
     }

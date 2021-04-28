@@ -9,7 +9,7 @@ export default async (data, ctx) => {
     })
     .then(data => data[0])
     .catch(err => {
-      ctx.methods.errorHandling('Internal server error', 'user_register', err)
+      ctx.methods.errorHandling('Internal server error', 'user_save', err)
     })
 
   return user
