@@ -3,6 +3,7 @@ export const UserDomain = `
     id: ID
     name: String
     email: String
+    role_id: String
     created_at: Date
     updated_at: Date
   }
@@ -16,6 +17,7 @@ export const UserDomain = `
     name: String
     email: String
     password: String
+    role_id: String
   }
 `
 export const UserMutations = `
@@ -39,12 +41,13 @@ export const UserMutations = `
 
   UserDelete(
     id: ID!
+    options: DeleteOptions
   ): Boolean
 `
 export const UserQuerys = `
-  Users: [User]
-
-  UserById(
-    id: ID!
-  ): User
+  Users(
+    id: ID
+    email: String
+    withDeleted: Boolean
+  ): [User]
 `

@@ -6,6 +6,10 @@ import { UserDomain, UserMutations, UserQuerys } from './User/domain'
 //To define a subscription add the method inside a Subscription type
 const typeDefs = gql`
   scalar Date
+  
+  input DeleteOptions {
+    hard: Boolean
+  }
 
   ${UserDomain}
 

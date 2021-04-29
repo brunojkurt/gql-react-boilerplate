@@ -1,12 +1,12 @@
 export default async (ctx, filters = {}) => {
   const query = ctx.db('users')
+    .whereNot('email', 'system@mail.com')
     .where(builder => {
       filters.id && builder.where('id', filters.id)
       filters.email && builder.where('email', filters.email)
     })
     .where(builder => {
-      !filters.withTrashed && builder.whereNull('deleted_at')
-      filters.onlyTrashed && builder.whereNotNull('deleted_at')
+      !filters.withDeleted && builder.whereNull('deleted_at')
     })
 
   const users = await query.then(data => {

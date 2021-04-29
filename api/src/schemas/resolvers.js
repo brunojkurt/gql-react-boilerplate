@@ -9,7 +9,6 @@ const userQuery = new UserQuery()
 const resolvers = {
   Query: {
     Users: userQuery.get,
-    UserById: userQuery.getById
   },
   Mutation: {
     UserRegister: userMutation.register,

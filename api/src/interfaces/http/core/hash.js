@@ -8,7 +8,7 @@ export async function hash(input) {
   return hashed
 }
 
-export async function compare(input, hashedInput) {
+export async function hashCompare(input, hashedInput) {
   const validCompare = await AsyncCompare(input, hashedInput)
   return validCompare
 }

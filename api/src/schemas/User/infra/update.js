@@ -1,8 +1,8 @@
 export default async (id, data, ctx) => {
   const { password, ...rest } = data
 
-  const user = await ctx.db('users')
-    .returning(['id', 'name', 'email'])
+  const { password: _, ...user } = await ctx.db('users')
+    .returning('*')
     .update(password ? { password: await ctx.methods.hash(password), ...rest } : { ...rest })
     .where('id', id)
     .then(data => data[0])

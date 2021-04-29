@@ -6,7 +6,7 @@ class UserMutation {
     
     const user = await save(userData, ctx)
 
-    const permissions = await getUserPermissions(user.role_id)
+    const permissions = await getUserPermissions(ctx, user)
 
     const token = ctx.methods.signToken({ 
       id: user.id,
@@ -33,7 +33,7 @@ class UserMutation {
       ctx.methods.errorHandling('Invalid password.', 'user_authenticate')
     }
 
-    const permissions = await getUserPermissions(user.role_id)
+    const permissions = await getUserPermissions(ctx, user)
 
     const token = ctx.methods.signToken({ 
       id: user.id,
@@ -47,6 +47,7 @@ class UserMutation {
 
   async create(source, params, ctx) {
     const { userData } = params
+    ctx.methods.hasPermission('user_create', ctx.user)
 
     const user = await save(userData, ctx)
     
@@ -55,6 +56,7 @@ class UserMutation {
 
   async update(source, params, ctx) {
     const { id, userData } = params
+    ctx.methods.hasPermission('user_update', ctx.user)
 
     const user = await update(id, userData, ctx)
 
@@ -62,9 +64,10 @@ class UserMutation {
   }
 
   async delete(source, params, ctx) {
-    const { id } = params
-
-    const del = await remove(id, ctx)
+    const { id, options } = params
+    ctx.methods.hasPermission('user_delete', ctx.user)
+    
+    const del = await remove(id, options, ctx)
     
     return del
   }

@@ -28,7 +28,7 @@ exports.seed = async function(knex) {
     { 
       id: systemUUID(),
       name: 'System',
-      email: process.env.SYSTEM_EMAIL || 'system@mail.com',
+      email: 'system@mail.com',
       password: await AsyncHash(String(Date.now() * Date.now()), 12),
       role_id: systemRole.id,
       created_by: systemUUID()

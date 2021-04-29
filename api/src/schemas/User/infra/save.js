@@ -1,12 +1,19 @@
 export default async (data, ctx) => {
   const { password, ...rest } = data
 
-  const user = await ctx.db('users')
-    .returning(['id, name, email'])
+  const defaultRole = await ctx.db('roles')
+    .select('id')
+    .where('name', 'default_user')
+    .first()
+  
+  const { password: _, ...user } = await ctx.db('users')
     .insert({
       ...rest,
-      password: await ctx.methods.hash(password)
+      role_id: defaultRole.id,
+      password: await ctx.methods.hash(password),
+      created_by: ctx.user.id
     })
+    .returning('*')
     .then(data => data[0])
     .catch(err => {
       ctx.methods.errorHandling('Internal server error', 'user_save', err)
