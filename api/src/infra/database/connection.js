@@ -1,9 +1,8 @@
 const Knex = require('knex')
 const knexConfig = require('../../../knexfile')
-import { setupPaginator, setupSoftDelete } from './utils'
+import { setupPaginator } from './utils'
 
 setupPaginator(Knex)
-setupSoftDelete(Knex)
 
 const connection = Knex(knexConfig)
 

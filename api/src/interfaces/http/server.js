@@ -21,13 +21,26 @@ const server = new ApolloServer({ ...schemas,
   },
   subscriptions: {
     onConnect: (connectionParams) => {
-      const { Authorization } = connectionParams
-      if (Authorization) {
-        return { token: Authorization }
+      const { authToken } = connectionParams
+      if (authToken) {
+        const user = core.verifyToken(authToken)
+        return {
+          user
+        }
       }
       throw new Error('Missing auth token!')
-    },
-    keepAlive: 2 * 1000
+    }
+  },
+  formatError: (error) => {
+    delete error.extensions.exception.stacktrace
+    const errorlog = {
+      message: error.message,
+      code: error.extensions.code,
+      Detail: error.extensions.exception || null,
+      Path: error.path ? error.path[0] : null,
+    }
+    console.error('\x1b[31m%s\x1b[0m', `[${'s'}] ERROR: Server: ${JSON.stringify(errorlog)}`)
+    return errorlog
   },
   introspection: environment !== 'production',
   playground: environment !== 'production',
