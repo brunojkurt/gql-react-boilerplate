@@ -31,7 +31,7 @@ const ApolloClientProvider = ({ children }) => {
     options: {
       reconnect: true,
       connectionParams: {
-        Authorization: token ? `Bearer ${token}` : ''
+        Authorization: token ? `${token}` : null
       }
     }
   })

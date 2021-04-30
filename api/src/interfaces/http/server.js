@@ -8,7 +8,8 @@ const environment = process.env.NODE_ENV
 const server = new ApolloServer({ ...schemas,
   context: ({ req, connection }) => {
     const { authMiddleware, ...coreMethods } = core
-    const user = authMiddleware(req)
+    const user =  authMiddleware(req, connection)
+
     const methods = {
       ...coreMethods
     }
@@ -21,11 +22,10 @@ const server = new ApolloServer({ ...schemas,
   },
   subscriptions: {
     onConnect: (connectionParams) => {
-      const { authToken } = connectionParams
-      if (authToken) {
-        const user = core.verifyToken(authToken)
+      const { Authorization } = connectionParams
+      if (Authorization) {
         return {
-          user
+          token: Authorization
         }
       }
       throw new Error('Missing auth token!')
