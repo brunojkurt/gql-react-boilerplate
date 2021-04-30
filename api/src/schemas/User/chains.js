@@ -1,5 +1,7 @@
+import { getUserPermissions } from './infra'
+
 const UserChains = {
-  // some_relation: (source, params, ctx) => {} 
+  permissions: async (source, params, ctx) => await getUserPermissions(ctx, source)
 }
 
 export default UserChains

@@ -6,6 +6,7 @@ export const UserDomain = `
     role_id: String
     created_at: Date
     updated_at: Date
+    permissions: [String]
   }
 
   type AuthenticationData {

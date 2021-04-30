@@ -7,9 +7,13 @@ const userMutation = new UserMutation()
 const userQuery = new UserQuery()
 
 const resolvers = {
+
+  //Queries
   Query: {
     Users: userQuery.get,
   },
+
+  //Mutations
   Mutation: {
     UserRegister: userMutation.register,
     UserAuthenticate: userMutation.authenticate,
@@ -17,10 +21,13 @@ const resolvers = {
     UserUpdate: userMutation.update,
     UserDelete: userMutation.delete
   },
+
+  //Chains
+  User: UserChains
+
   // Subscription: {
     
   // }
-  ...UserChains
 }
 
 // export const pubsub = new apolloServer.PubSub()

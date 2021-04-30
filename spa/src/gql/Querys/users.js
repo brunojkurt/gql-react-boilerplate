@@ -1,26 +1,22 @@
 import { gql } from '@apollo/client'
 
 export const Users = gql`
-  query Users {
-    Users {
-      id
-      name
-      email
-      created_at
-      updated_at
-    }
-  }
-`
-export const UserById = gql`
-  query UserById(
-    $id: ID!
+  query Users (
+    $id: ID
+    $email: String
+    $withDeleted: Boolean
   ) {
-    UserById(id: $id) {
+    Users (
+      id: $id
+      email: $email
+      withDeleted: $withDeleted
+    ) {
       id
       name
       email
+      role_id
       created_at
       updated_at
-    }
+    } 
   }
 `

@@ -4,7 +4,7 @@ exports.up = function(knex) {
   return knex.schema.createTable('permissions', table => {
     table.uuid('id').unique().primary().notNullable()
       .defaultTo(knex.raw('uuid_generate_v4()'));
-    table.string('code').notNullable();
+    table.string('code').unique().notNullable();
     table.string('description').notNullable();
     table.timestamp('created_at').notNullable()
       .defaultTo(knex.fn.now());
