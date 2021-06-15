@@ -47,6 +47,4 @@ const connections = {
   } 
 }
 
-const knexConfig = connections[use]
-
-module.exports = knexConfig
+module.exports = connections[use]

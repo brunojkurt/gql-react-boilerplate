@@ -44,11 +44,10 @@ services:
           - "${API_URL}"
     build:
       context: ./api
-    command: sh -c "yarn migrate:run && yarn seed && yarn dev"
+    command: sh -c "yarn install && yarn migrate:run && yarn seed && yarn dev"
     container_name: "${API_URL}"
     volumes:
       - "./api:/usr/app"
-      - "/usr/app/node_modules"
     ports:
       - "5000:${API_PORT}"
     environment:
@@ -80,11 +79,10 @@ services:
           - "${SPA_URL}"
     build: 
       context: ./spa
-    command: sh -c "yarn dev"
+    command: sh -c "yarn install && yarn dev"
     container_name: "${SPA_URL}"
     volumes:
       - "./spa:/usr/app"
-      - "/usr/app/node_modules"
     ports:
       - "${HTTP_PORT}"
     environment:

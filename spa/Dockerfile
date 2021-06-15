@@ -1,11 +1,8 @@
-FROM node:alpine
+FROM node:14.16.1-buster-slim
 
 WORKDIR /usr/app
 
-ENV PATH usr/app/node_modules/.bin:$PATH
+RUN apt install -y bash
 
 COPY package*.json ./
-
-RUN npm install
-
-COPY . .
+COPY yarn.lock ./

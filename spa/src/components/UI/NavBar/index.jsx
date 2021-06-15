@@ -3,13 +3,13 @@ import { Typography, Toolbar, Button } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 
 import { Bar } from '..'
-import { useAuthContext } from '../../../store/auth'
+import { useAuth } from '../../../hooks/auth'
 import { Toolbar as StyledToolbar } from './styles'
 
 const NavBar = (props) => {
   const { title, ...rest } = props
   const history = useHistory()
-  const { user } = useAuthContext()
+  const { user } = useAuth()
 
   return (
     <>

@@ -3,7 +3,7 @@ import { Grid, Box } from '@material-ui/core'
 import { NavBar } from '../../UI'
 
 import { Container, Image, Rotate, Title } from './styles'
-import { useTheme } from '../../../store/theme'
+import { useTheme } from '../../../hooks/theme'
 
 const Home = () => {
   const { palette } = useTheme()

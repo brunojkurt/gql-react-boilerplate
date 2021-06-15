@@ -5,8 +5,8 @@ import { FiMenu, FiLogOut } from 'react-icons/fi'
 import { Router, Switch, Route, useHistory, useLocation } from 'react-router-dom'
 
 import { Root, Drawer, RightPanel, Content, AppBar, LogoWrapper, PanelToolBar } from './styles'
-import { useTheme } from '../../../../store/theme'
-import { useAuthContext } from '../../../../store/auth'
+import { useTheme } from '../../../../hooks/theme'
+import { useAuth } from '../../../../hooks/auth'
 
 const Dashboard = (props) => {
   const { routes, children } = props
@@ -15,7 +15,7 @@ const Dashboard = (props) => {
   const { palette, methods } = useTheme()
   const { setTheme, currentTheme } = methods
   const history = useHistory()
-  const { logout } = useAuthContext()
+  const { logout } = useAuth()
 
   const drawerWidth = 240
 

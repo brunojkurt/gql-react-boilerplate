@@ -1,9 +1,16 @@
 import React from 'react'
 import { Redirect, Route } from 'react-router-dom'
-import { useAuthContext } from '../../store/auth'
+import { useAuth } from '../../hooks/auth'
+
+import { Backdrop } from '../UI'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { token } = useAuthContext()
+  const { token, loading } = useAuth()
+  
+  if (loading) {
+    return <Backdrop/>
+  }
+
   return (
     <Route
       {...rest}
@@ -13,8 +20,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         ) : (
           <Redirect
             to={{
-            pathname: "/login",
-            state: { from: props.location }
+              pathname: "/login",
+              state: { from: props.location }
             }}
           />
         )

@@ -1,9 +1,9 @@
 import React from 'react'
-import Routes from './routes'
+import Routes from './Routes'
 import GlobalStyle from './styles/global'
-import { AuthProvider } from './store/auth'
-import { ApolloClientProvider } from './store/apollo'
-import { ThemeProvider } from './store/theme'
+import { AuthProvider } from './contexts/auth'
+import { ApolloClientProvider } from './contexts/apollo'
+import { ThemeProvider } from './contexts/theme'
 
 const App = () => {
   return (

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { TextField, Typography } from '@material-ui/core'
 import { Container, LogoWrapper, Logo, FormPaper, FormItem, ButtonWrapper } from './styles'
 import { Button } from '../../UI'
-import { useApolloClient } from '../../../store/apollo'
+import { useApolloClient } from '../../../hooks/apollo'
 import { UserAuthenticate } from '../../../gql'
-import { useAuthContext } from '../../../store/auth'
+import { useAuth } from '../../../hooks/auth'
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState('')
@@ -12,7 +12,7 @@ const Login = ({ history }) => {
   const [loading, setLoading] = useState(false)
 
   const client = useApolloClient()
-  const { login, token } = useAuthContext()
+  const { login, token } = useAuth()
 
   useEffect(() => {
     const checkAuth = () => {

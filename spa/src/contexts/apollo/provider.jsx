@@ -4,10 +4,10 @@ import { split } from 'apollo-link'
 import { setContext } from 'apollo-link-context'
 import { getMainDefinition } from 'apollo-utilities'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { useAuthContext } from '../auth'
+import { useAuth } from '../../hooks/auth'
 
 const ApolloClientProvider = ({ children }) => {
-  const { token } = useAuthContext()
+  const { token } = useAuth()
 
   const cache = new InMemoryCache()
 
