@@ -19,8 +19,7 @@ services:
 
   db:
     depends_on:
-      proxy:
-        condition: service_started
+      - proxy
     networks:
       main:
         aliases:
@@ -36,8 +35,7 @@ services:
 
   api:
     depends_on:
-      db:
-        condition: service_started
+      - db
     networks:
       main:
         aliases:
@@ -71,8 +69,7 @@ services:
 
   spa:
     depends_on:
-      api:
-        condition: service_started
+      - api
     networks:
       main:
         aliases:

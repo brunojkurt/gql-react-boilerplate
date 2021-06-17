@@ -1,8 +1,8 @@
-FROM node:14.16.1-buster-slim
+FROM node:alpine
 
 WORKDIR /usr/app
 
-RUN apt install -y bash
+RUN apk --no-cache add bash
 
 COPY package*.json ./
 COPY yarn.lock ./
