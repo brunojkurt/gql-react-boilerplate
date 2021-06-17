@@ -8,7 +8,7 @@ const environment = process.env.NODE_ENV
 const server = new ApolloServer({ ...schemas,
   context: ({ req, connection }) => {
     const { authMiddleware, ...coreMethods } = core
-    const user =  authMiddleware(req, connection)
+    const user = authMiddleware(req, connection)
 
     const methods = {
       ...coreMethods

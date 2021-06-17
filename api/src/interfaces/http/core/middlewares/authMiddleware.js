@@ -1,7 +1,7 @@
 import { verifyToken } from '..'
 
 const authMiddleware = (req, connection) => {
-  if (connection.context)
+  if (connection && connection.context)
     return verifyToken(connection.context.token)
 
   const auth = req.headers.authorization
