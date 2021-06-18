@@ -1,19 +1,19 @@
 import UserMutation from './User/mutations'
 import UserQuery from './User/querys'
 import UserChains from './User/chains'
-//import Queries and Mutations here
+// import Queries and Mutations here
 
 const userMutation = new UserMutation()
 const userQuery = new UserQuery()
 
 const resolvers = {
 
-  //Queries
+  // Queries
   Query: {
-    Users: userQuery.get,
+    Users: userQuery.get
   },
 
-  //Mutations
+  // Mutations
   Mutation: {
     UserRegister: userMutation.register,
     UserAuthenticate: userMutation.authenticate,
@@ -22,11 +22,11 @@ const resolvers = {
     UserDelete: userMutation.delete
   },
 
-  //Chains
+  // Chains
   User: UserChains
 
   // Subscription: {
-    
+
   // }
 }
 

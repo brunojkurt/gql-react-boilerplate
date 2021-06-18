@@ -5,9 +5,9 @@ export default async (ctx, { role_id }) => {
     .where('role_id', role_id)
 
   const permissions = await query.then(data => data || [])
-  .catch(err => {
-    ctx.methods.errorHandling('Internal server error', 'user_get_permissions', err)
-  })
+    .catch(err => {
+      ctx.methods.errorHandling('Internal server error', 'user_get_permissions', err)
+    })
 
   return permissions.map(permissions => permissions.code)
 }

@@ -1,4 +1,4 @@
-import { ApolloError, } from 'apollo-server'
+import { ApolloError } from 'apollo-server'
 
 const triggerError = () => {
   throw new ApolloError('You dont have the privileges.', 'Not Authorized.')
@@ -17,7 +17,7 @@ export default (code = [], user) => {
   }
 
   const hasPermission = checkCode(code, user.permissions)
-  
+
   if (!hasPermission) {
     triggerError()
   }

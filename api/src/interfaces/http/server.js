@@ -5,7 +5,8 @@ import * as core from './core'
 
 const environment = process.env.NODE_ENV
 
-const server = new ApolloServer({ ...schemas,
+const server = new ApolloServer({
+  ...schemas,
   context: ({ req, connection }) => {
     const { authMiddleware, ...coreMethods } = core
     const user = authMiddleware(req, connection)
@@ -37,7 +38,7 @@ const server = new ApolloServer({ ...schemas,
       message: error.message,
       code: error.extensions.code,
       Detail: error.extensions.exception || null,
-      Path: error.path ? error.path[0] : null,
+      Path: error.path ? error.path[0] : null
     }
     console.error('\x1b[31m%s\x1b[0m', `[${'s'}] ERROR: Server: ${JSON.stringify(errorlog)}`)
     return errorlog
@@ -49,7 +50,7 @@ const server = new ApolloServer({ ...schemas,
 
 server.start = () => {
   server.listen(process.env.API_PORT || 5000, '0.0.0.0').then(() => {
-    console.log('\x1b[36m%s\x1b[0m', `SERVERINIT: 👍 GraphQL API ready! 👍`)
+    console.log('\x1b[36m%s\x1b[0m', 'SERVERINIT: 👍 GraphQL API ready! 👍')
     console.log('\x1b[37m%s\x1b[0m', 'SERVERINIT: 🚀 Subscriptions ready! 🚀')
   })
 }

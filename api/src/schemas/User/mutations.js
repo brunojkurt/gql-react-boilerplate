@@ -1,24 +1,24 @@
 import { save, update, remove, get, getUserPermissions } from './infra'
 
 class UserMutation {
-  async register(source, params, ctx) {
+  async register (source, params, ctx) {
     const { userData } = params
-    
+
     const user = await save(userData, ctx)
 
     const permissions = await getUserPermissions(ctx, user)
 
-    const token = ctx.methods.signToken({ 
+    const token = ctx.methods.signToken({
       id: user.id,
       name: user.name,
-      email: user.email,  
+      email: user.email,
       permissions
     })
 
     return { user, token }
   }
 
-  async authenticate(source, params, ctx) {
+  async authenticate (source, params, ctx) {
     const { email, password } = params
 
     const user = await get(ctx, { email, first: true })
@@ -35,26 +35,26 @@ class UserMutation {
 
     const permissions = await getUserPermissions(ctx, user)
 
-    const token = ctx.methods.signToken({ 
+    const token = ctx.methods.signToken({
       id: user.id,
       name: user.name,
-      email: user.email,  
+      email: user.email,
       permissions
     })
 
     return { user, token }
   }
 
-  async create(source, params, ctx) {
+  async create (source, params, ctx) {
     const { userData } = params
     ctx.methods.hasPermission('user_create', ctx.user)
 
     const user = await save(userData, ctx)
-    
+
     return user
   }
 
-  async update(source, params, ctx) {
+  async update (source, params, ctx) {
     const { id, userData } = params
     ctx.methods.hasPermission('user_update', ctx.user)
 
@@ -63,12 +63,12 @@ class UserMutation {
     return user
   }
 
-  async delete(source, params, ctx) {
+  async delete (source, params, ctx) {
     const { id, options } = params
     ctx.methods.hasPermission('user_delete', ctx.user)
-    
+
     const del = await remove(id, options, ctx)
-    
+
     return del
   }
 }

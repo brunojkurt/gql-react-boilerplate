@@ -1,6 +1,6 @@
 const { systemUUID } = require('./utils/constants')
 
-exports.seed = async function(knex) {
+exports.seed = async function (knex) {
   const havePermissions = await knex('roles')
     .then(data => {
       if (data && data.length > 0) {
@@ -8,10 +8,10 @@ exports.seed = async function(knex) {
       }
       return false
     })
-  
-  if (havePermissions) return false;
 
-  const role_permissions = {
+  if (havePermissions) return false
+
+  const rolePermissions = {
     system: [
       'user_get',
       'user_create',
@@ -34,27 +34,27 @@ exports.seed = async function(knex) {
       { name: 'system', created_by: systemUUID() },
       { name: 'administrator', created_by: systemUUID() },
       { name: 'default_user', created_by: systemUUID() }
-    ]).returning(['id', 'name']);
+    ]).returning(['id', 'name'])
   }
 
   const insertPermissions = async () => {
     return await knex('permissions').insert([
-      { 
+      {
         code: 'user_get',
         description: 'Fetch Users data',
         created_by: systemUUID()
       },
-      { 
+      {
         code: 'user_create',
         description: 'Create new User',
         created_by: systemUUID()
       },
-      { 
+      {
         code: 'user_update',
         description: 'Update User data',
         created_by: systemUUID()
       },
-      { 
+      {
         code: 'user_delete',
         description: 'Update User data',
         created_by: systemUUID()
@@ -68,9 +68,9 @@ exports.seed = async function(knex) {
   let RolePermissionEntries = []
 
   roles.forEach(role => {
-    const newPermissionEntries = role_permissions[role.name].map(role_permission => ({
+    const newPermissionEntries = rolePermissions[role.name].map(rolePermissions => ({
       role_id: role.id,
-      permission_id: permissions.filter(permission => permission.code === role_permission)[0].id,
+      permission_id: permissions.filter(permission => permission.code === rolePermissions)[0].id,
       created_by: systemUUID()
     }))
     RolePermissionEntries = [...RolePermissionEntries, ...newPermissionEntries]
@@ -78,4 +78,4 @@ exports.seed = async function(knex) {
 
   return await knex('role_permissions')
     .insert(RolePermissionEntries)
-};
+}

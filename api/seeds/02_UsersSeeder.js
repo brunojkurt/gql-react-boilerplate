@@ -5,16 +5,16 @@ const { systemUUID } = require('./utils/constants')
 
 const AsyncHash = promisify(bcrypt.hash)
 
-exports.seed = async function(knex) {
+exports.seed = async function (knex) {
   const haveUsers = await knex('users')
-  .then(data => {
-    if (data && data.length > 0) {
-      return true
-    }
-    return false
-  })
+    .then(data => {
+      if (data && data.length > 0) {
+        return true
+      }
+      return false
+    })
 
-  if (haveUsers) return false;
+  if (haveUsers) return false
 
   const systemRole = await knex('roles')
     .where('name', 'system')
@@ -25,7 +25,7 @@ exports.seed = async function(knex) {
     .first()
 
   return await knex('users').insert([
-    { 
+    {
       id: systemUUID(),
       name: 'System',
       email: 'system@mail.com',
@@ -40,5 +40,5 @@ exports.seed = async function(knex) {
       role_id: adminRole.id,
       created_by: systemUUID()
     }
-  ]);
-};
+  ])
+}
