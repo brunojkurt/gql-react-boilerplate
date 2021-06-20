@@ -6,24 +6,6 @@ const path = require('path')
 const use = process.env.DB_DRIVER || 'pg'
 
 const connections = {
-  sqlite: {
-    client: 'sqlite3',
-
-    connection: {
-      filename: path.resolve(__dirname, 'src', 'database', 'database.sqlite')
-    },
-
-    migrations: {
-      directory: path.resolve(__dirname, 'src', 'database', 'migrations')
-    },
-
-    seeds: {
-      directory: path.resolve(__dirname, 'src', 'database', 'seeds')
-    },
-
-    useNullAsDefault: true,
-  },
-
   pg: {
     client: 'pg',
 
@@ -44,7 +26,7 @@ const connections = {
     },
 
     debug: process.env.DB_DEBUG || false
-  } 
+  }
 }
 
 module.exports = connections[use]

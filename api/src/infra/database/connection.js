@@ -1,8 +1,8 @@
 const Knex = require('knex')
 const knexConfig = require('../../../knexfile')
-import { setupPaginator } from './utils'
+import { attachPaginate } from './extensions'
 
-setupPaginator(Knex)
+attachPaginate(Knex)
 
 const connection = Knex(knexConfig)
 
