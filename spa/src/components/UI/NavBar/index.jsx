@@ -13,33 +13,38 @@ const NavBar = (props) => {
 
   return (
     <>
-      <Bar { ...rest }>
+      <Bar {...rest}>
         <StyledToolbar>
           <div>
-            { title && (
+            {title && (
               <Typography
-                color="primary"
-                variant="h6">
-                { title }
+                color='primary'
+                variant='h6'
+              >
+                {title}
               </Typography>
-            ) }
+            )}
           </div>
-          { user?.name ? (
-            <Button
-              onClick={ () => history.push('/dashboard') }>
-              { user.name }
-            </Button>
-          ) : (
-            <Button
-              onClick={ () => history.push('/login') }>
-              Login
-            </Button>
-          )}
+          {user?.name
+            ? (
+              <Button
+                onClick={() => history.push('/dashboard')}
+              >
+                {user.name}
+              </Button>
+              )
+            : (
+              <Button
+                onClick={() => history.push('/login')}
+              >
+                Login
+              </Button>
+              )}
         </StyledToolbar>
       </Bar>
-      { (!props.position || props.position === 'absolute' || props.position === 'fixed') && (
-          <Toolbar/>
-      ) }
+      {(!props.position || props.position === 'absolute' || props.position === 'fixed') && (
+        <Toolbar />
+      )}
     </>
   )
 }

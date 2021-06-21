@@ -27,15 +27,17 @@ const Dashboard = (props) => {
     <Router history={history}>
       <Root>
         <Drawer
-          variant="permanent"
-          anchor="left"
+          variant='permanent'
+          anchor='left'
           draweropen={open ? 1 : 0}
-          drawerwidth={drawerWidth}>
+          drawerwidth={drawerWidth}
+        >
           <LogoWrapper>
             <Typography
-              color="primary"
-              variant="h6"
-              align="center">
+              color='primary'
+              variant='h6'
+              align='center'
+            >
               {open ? 'GQL-BOILERPLATE' : 'GQL'}
             </Typography>
           </LogoWrapper>
@@ -43,29 +45,31 @@ const Dashboard = (props) => {
             <ListItem
               button
               selected={useLocation().pathname === '/dashboard'}
-              onClick={() => history.push('/dashboard')}>
+              onClick={() => history.push('/dashboard')}
+            >
               <ListItemIcon>
-                <IoIosHome color={palette.primary.main} size={24}/>
+                <IoIosHome color={palette.primary.main} size={24} />
               </ListItemIcon>
               <ListItemText>
-                <Typography color="primary">
-                    Início
+                <Typography color='primary'>
+                  Início
                 </Typography>
               </ListItemText>
             </ListItem>
-            { routes.map(route => (
+            {routes.map(route => (
               <ListItem
                 key={route.url}
                 button
                 selected={useLocation().pathname === `/dashboard/${route.url}`}
-                onClick={() => history.push(`/dashboard/${route.url}`)}>
+                onClick={() => history.push(`/dashboard/${route.url}`)}
+              >
                 <ListItemIcon>
-                  <Typography color="primary">
+                  <Typography color='primary'>
                     {route.icon}
                   </Typography>
                 </ListItemIcon>
                 <ListItemText>
-                  <Typography color="primary">
+                  <Typography color='primary'>
                     {route.label}
                   </Typography>
                 </ListItemText>
@@ -76,26 +80,30 @@ const Dashboard = (props) => {
         <RightPanel>
           <AppBar
             background={palette.background.paper}
-            position="relative"
+            position='relative'
             draweropen={open ? 1 : 0}
-            drawerwidth={drawerWidth}>
-            <PanelToolBar >
+            drawerwidth={drawerWidth}
+          >
+            <PanelToolBar>
               <IconButton
                 onClick={() => setOpen(!open)}
-                edge="start"
-                color="primary"
-                aria-label="menu">
+                edge='start'
+                color='primary'
+                aria-label='menu'
+              >
                 <FiMenu size={22} />
               </IconButton>
               <div>
                 <FormControlLabel
                   control={<SwitchButton checked={currentTheme === 'dark'} onChange={switchTheme} />}
-                  label={<Typography color="textPrimary">Dark Theme</Typography>}/>
+                  label={<Typography color='textPrimary'>Dark Theme</Typography>}
+                />
                 <IconButton
                   onClick={() => logout()}
-                  edge="end"
-                  color="primary"
-                  aria-label="logout">
+                  edge='end'
+                  color='primary'
+                  aria-label='logout'
+                >
                   <FiLogOut size={20} />
                 </IconButton>
               </div>
@@ -103,10 +111,10 @@ const Dashboard = (props) => {
           </AppBar>
           <Content>
             <Switch>
-              { routes.map(route => (
+              {routes.map(route => (
                 <Route key={route.url} path={`/dashboard/${route.url}`} exact component={route.component} />
               ))}
-              <Route path="*" component={() => children} />
+              <Route path='*' component={() => children} />
             </Switch>
           </Content>
         </RightPanel>

@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 import { Roboto } from './fonts'
 
 const GlobalStyle = createGlobalStyle`
-  ${ Roboto }
+  ${Roboto}
   * {
     margin: 0;
     padding: 0;

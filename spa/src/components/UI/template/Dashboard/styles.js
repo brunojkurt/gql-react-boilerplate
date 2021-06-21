@@ -34,7 +34,7 @@ export const Drawer = styled(DrawerBase)`
       height: 100vh;
     }
     @media (min-width: 601px) {
-      width: ${(props) => props.draweropen ? `${props.drawerwidth}px` : '58px' };
+      width: ${(props) => props.draweropen ? `${props.drawerwidth}px` : '58px'};
       transition: all 0.3s ease;
       overflow-x: hidden;
       position: relative;

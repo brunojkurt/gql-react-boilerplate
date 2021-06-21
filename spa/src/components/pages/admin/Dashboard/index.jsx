@@ -8,9 +8,9 @@ import Users from '../Users'
 const Dashboard = () => {
   const routes = [
     {
-      icon: <IoMdPeople size={24}/>,
-      label: "Usuários",
-      url: "users",
+      icon: <IoMdPeople size={24} />,
+      label: 'Usuários',
+      url: 'users',
       component: Users
     }
   ]

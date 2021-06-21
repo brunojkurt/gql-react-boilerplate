@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import AuthContext from  './context'
+import AuthContext from './context'
 
 const initialState = {
   user: null,
@@ -12,16 +12,18 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchUserData = () => {
-      const user = localStorage.getItem('user')
-      const token = localStorage.getItem('token')
-      setState(() => user && token ? ({
-        user: JSON.parse(user),
-        token,
-        loading: false
-      }) : ({
-        ...initialState,
-        loading: false
-      }))
+      const user = window.localStorage.getItem('user')
+      const token = window.localStorage.getItem('token')
+      setState(() => user && token
+        ? ({
+            user: JSON.parse(user),
+            token,
+            loading: false
+          })
+        : ({
+            ...initialState,
+            loading: false
+          }))
     }
 
     fetchUserData()
@@ -29,18 +31,18 @@ const AuthProvider = ({ children }) => {
 
   const login = (user, token) => {
     setState(state => ({ ...state, user, token }))
-    localStorage.setItem('user', JSON.stringify(user))
-    localStorage.setItem('token', token)
+    window.localStorage.setItem('user', JSON.stringify(user))
+    window.localStorage.setItem('token', token)
   }
 
   const logout = () => {
     setState({ ...initialState, loading: false })
-    localStorage.removeItem('user')
-    localStorage.removeItem('token')
+    window.localStorage.removeItem('user')
+    window.localStorage.removeItem('token')
   }
 
   const isAuthenticated = () => {
-    return state.token ? true : false
+    return !!state.token
   }
 
   const contextData = {
@@ -52,7 +54,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={contextData}>
-      { children }
+      {children}
     </AuthContext.Provider>
   )
 }

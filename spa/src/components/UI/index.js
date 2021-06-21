@@ -7,4 +7,4 @@ export { default as Bar } from './Bar'
 export { default as Backdrop } from './Backdrop'
 
 // Molecules
-export { default as NavBar} from './NavBar'
+export { default as NavBar } from './NavBar'

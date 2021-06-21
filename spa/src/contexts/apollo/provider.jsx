@@ -25,7 +25,7 @@ const ApolloClientProvider = ({ children }) => {
   })
 
   const httpAuthLink = authLink.concat(httpLink)
-  
+
   const wsLink = new WebSocketLink({
     uri: process.env.REACT_APP_WS_URL,
     options: {
@@ -38,21 +38,21 @@ const ApolloClientProvider = ({ children }) => {
 
   const client = new ApolloClient({
     link: split(({ query }) => {
-        const definition = getMainDefinition(query)
-        return (
-          definition.kind === 'OperationDefinition' &&
+      const definition = getMainDefinition(query)
+      return (
+        definition.kind === 'OperationDefinition' &&
           definition.operation === 'subscription'
-        )
-      },
-      wsLink,
-      httpAuthLink
+      )
+    },
+    wsLink,
+    httpAuthLink
     ),
     cache
   })
 
   return (
     <ApolloProvider client={client}>
-      { children }
+      {children}
     </ApolloProvider>
   )
 }

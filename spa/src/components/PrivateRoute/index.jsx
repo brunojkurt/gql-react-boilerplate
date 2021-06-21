@@ -6,26 +6,25 @@ import { Backdrop } from '../UI'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { token, loading } = useAuth()
-  
+
   if (loading) {
-    return <Backdrop/>
+    return <Backdrop />
   }
 
   return (
     <Route
       {...rest}
       render={props =>
-        token ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
-      }
+        token
+          ? <Component {...props} />
+          : (
+            <Redirect
+              to={{
+                pathname: '/login',
+                state: { from: props.location }
+              }}
+            />
+            )}
     />
   )
 }

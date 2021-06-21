@@ -35,64 +35,69 @@ const Login = ({ history }) => {
         password
       }
     })
-    .then(async response => {
-      const { data } = response
-      const { UserAuthenticate: authData } = data
-      await login(authData.user, authData.token)
-    })
-    .catch(error => {
-      alert(error.message)
-    })
+      .then(async response => {
+        const { data } = response
+        const { UserAuthenticate: authData } = data
+        await login(authData.user, authData.token)
+      })
+      .catch(error => {
+        window.alert(error.message)
+      })
 
     setLoading(false)
   }
 
   return (
-    <Container maxWidth="xs">
+    <Container maxWidth='xs'>
       <FormPaper elevation={3}>
         <LogoWrapper>
           <Typography
-            color="primary"
-            variant="h4">
-              <Logo/>
+            color='primary'
+            variant='h4'
+          >
+            <Logo />
           </Typography>
           <Typography
-            color="primary"
-            variant="h4">
-              LOGIN
+            color='primary'
+            variant='h4'
+          >
+            LOGIN
           </Typography>
         </LogoWrapper>
         <form onSubmit={(e) => handleSubmit(e)}>
           <FormItem>
-            <TextField 
-              id="email"
-              label="E-mail"
-              type="email"
+            <TextField
+              id='email'
+              label='E-mail'
+              type='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               fullWidth
-              required/>
+              required
+            />
           </FormItem>
-          
+
           <FormItem>
-            <TextField 
-              id="password"
-              label="Senha"
-              type="password"
+            <TextField
+              id='password'
+              label='Senha'
+              type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               fullWidth
-              required/>
+              required
+            />
           </FormItem>
 
           <ButtonWrapper>
             <Button
-              color="primary"
-              type="submit"
-              variant="contained"
+              color='primary'
+              type='submit'
+              variant='contained'
               loading={loading}
               disabled={loading}
-              fullWidth>
+              fullWidth
+            >
               Entrar
             </Button>
           </ButtonWrapper>

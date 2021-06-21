@@ -10,7 +10,7 @@ const App = () => {
     <AuthProvider>
       <ApolloClientProvider>
         <ThemeProvider>
-          <GlobalStyle/>
+          <GlobalStyle />
           <Routes />
         </ThemeProvider>
       </ApolloClientProvider>

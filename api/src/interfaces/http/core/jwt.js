@@ -24,7 +24,6 @@ export const verifyToken = (token) => {
     const payload = jwt.verify(token, secret)
 
     return payload
-
   } catch (err) {
     throw new ApolloError('Invalid Authorization Token.', 401, err)
   }

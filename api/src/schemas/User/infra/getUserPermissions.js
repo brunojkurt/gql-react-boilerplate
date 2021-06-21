@@ -1,8 +1,8 @@
-export default async (ctx, { role_id }) => {
+export default async (ctx, { role_id: roleId }) => {
   const query = ctx.db('role_permissions')
     .select('permissions.code')
     .join('permissions', 'role_permissions.permission_id', 'permissions.id')
-    .where('role_id', role_id)
+    .where('role_id', roleId)
 
   const permissions = await query.then(data => data || [])
     .catch(err => {

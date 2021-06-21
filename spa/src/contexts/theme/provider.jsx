@@ -7,7 +7,7 @@ const CustomThemeProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchTheme = () => {
-      const theme = localStorage.getItem('theme')
+      const theme = window.localStorage.getItem('theme')
       theme && setCurrentTheme(theme)
     }
     fetchTheme()
@@ -20,7 +20,7 @@ const CustomThemeProvider = ({ children }) => {
         main: '#00072d'
       },
       secondary: {
-        main: '#0a2472',
+        main: '#0a2472'
       }
     }
   })
@@ -32,8 +32,8 @@ const CustomThemeProvider = ({ children }) => {
         main: '#FFF'
       },
       secondary: {
-        main: '#FFF000',
-      },
+        main: '#FFF000'
+      }
     }
   })
 
@@ -44,7 +44,7 @@ const CustomThemeProvider = ({ children }) => {
 
   const setTheme = (theme) => {
     setCurrentTheme(theme)
-    localStorage.setItem('theme', theme)
+    window.localStorage.setItem('theme', theme)
   }
 
   const methods = {
@@ -54,7 +54,7 @@ const CustomThemeProvider = ({ children }) => {
 
   return (
     <ThemeProvider theme={{ ...themes[currentTheme], methods }}>
-      { children }
+      {children}
     </ThemeProvider>
   )
 }

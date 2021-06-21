@@ -1,6 +1,6 @@
+import { attachPaginate } from './extensions'
 const Knex = require('knex')
 const knexConfig = require('../../../knexfile')
-import { attachPaginate } from './extensions'
 
 attachPaginate(Knex)
 

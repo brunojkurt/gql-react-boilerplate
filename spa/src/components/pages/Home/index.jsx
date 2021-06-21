@@ -11,27 +11,28 @@ const Home = () => {
   return (
     <>
       <NavBar
-        title="GQL-BOILERPLATE"
-        background={palette.background.paper} />
+        title='GQL-BOILERPLATE'
+        background={palette.background.paper}
+      />
       <Container>
         <Grid container>
           <Grid item xs={6}>
             <Rotate>
-              <Box display="flex" justifyContent="center">
-                <Image src="/graphql.svg" />
+              <Box display='flex' justifyContent='center'>
+                <Image src='/graphql.svg' />
               </Box>
             </Rotate>
           </Grid>
           <Grid item xs={6}>
             <Rotate>
-              <Box display="flex" justifyContent="center">
-                <Image src="/react.png" />
+              <Box display='flex' justifyContent='center'>
+                <Image src='/react.png' />
               </Box>
             </Rotate>
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Title variant="h2" align="center">
+          <Title variant='h2' align='center'>
             GQL + React Boilerplate
           </Title>
         </Grid>

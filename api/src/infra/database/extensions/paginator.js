@@ -1,5 +1,5 @@
-export default function attachPaginate(Knex) {
-  function paginate({ rowsPerPage = 10, currentPage = 1, isFromStart = false, isLengthAware = false }) {
+export default function attachPaginate (Knex) {
+  function paginate ({ rowsPerPage = 10, currentPage = 1, isFromStart = false, isLengthAware = false }) {
     if (isNaN(rowsPerPage)) {
       throw new Error('Paginate error: rowsPerPage must be a number.')
     }
@@ -31,8 +31,8 @@ export default function attachPaginate(Knex) {
       typeof this.client.config.postProcessResponse === 'function'
         ? this.client.config.postProcessResponse
         : function (key) {
-            return key
-          }
+          return key
+        }
 
     if (shouldFetchTotals) {
       countQuery = new this.constructor(this.client)
@@ -54,7 +54,7 @@ export default function attachPaginate(Knex) {
 
         pagination = {
           total,
-          lastPage: Math.ceil(total / rowsPerPage),
+          lastPage: Math.ceil(total / rowsPerPage)
         }
       }
 
@@ -64,7 +64,7 @@ export default function attachPaginate(Knex) {
         rowsPerPage,
         currentPage,
         from: offset,
-        to: offset + result.length,
+        to: offset + result.length
       })
 
       return { data: result, ...pagination }

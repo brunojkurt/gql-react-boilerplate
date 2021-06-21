@@ -6,7 +6,7 @@ const triggerError = () => {
 
 const checkCode = (code, permissions) => {
   if (Array.isArray(code)) {
-    return !!code.filter(code_str => permissions.includes(code_str)).length
+    return !!code.filter(codeStr => permissions.includes(codeStr)).length
   }
   return permissions.includes(code)
 }
