@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
+import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components'
 
 const CustomThemeProvider = ({ children }) => {
   const [currentTheme, setCurrentTheme] = useState('light')
@@ -48,13 +49,14 @@ const CustomThemeProvider = ({ children }) => {
   }
 
   const methods = {
-    setTheme,
-    currentTheme
+    setTheme
   }
 
   return (
-    <ThemeProvider theme={{ ...themes[currentTheme], methods }}>
-      {children}
+    <ThemeProvider theme={{ ...themes[currentTheme], methods, currentTheme }}>
+      <StyledComponentsThemeProvider theme={themes[currentTheme]}>
+        {children}
+      </StyledComponentsThemeProvider>
     </ThemeProvider>
   )
 }

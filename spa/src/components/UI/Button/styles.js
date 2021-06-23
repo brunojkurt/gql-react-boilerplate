@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Button as ButtonBase, CircularProgress } from '@material-ui/core'
+import { Button, CircularProgress } from '@material-ui/core'
 
-export const CustomButton = styled(ButtonBase)`
+export const StyledButton = styled(Button)`
   position: relative;
   justify-content: center;
   align-items: center;

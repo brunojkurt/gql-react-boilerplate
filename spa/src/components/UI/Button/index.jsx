@@ -1,12 +1,13 @@
-import { CustomButton, Loading } from './styles'
+import React from 'react'
+import { StyledButton, Loading } from './styles'
 
 const Button = (props) => {
   const { children, loading, ...rest } = props
   return (
-    <CustomButton {...rest}>
+    <StyledButton {...rest}>
       {children}
       {loading && <Loading size={24} />}
-    </CustomButton>
+    </StyledButton>
   )
 }
 

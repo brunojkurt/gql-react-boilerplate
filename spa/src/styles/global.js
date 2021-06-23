@@ -18,6 +18,9 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     font-size: 14px;
   }
+  body {
+    background-color: ${({ theme }) => theme.palette.background.default};
+  }
 `
 
 export default GlobalStyle

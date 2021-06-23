@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Toolbar as ToolbarBase } from '@material-ui/core'
+import { Toolbar } from 'components/UI'
 
-export const Toolbar = styled(ToolbarBase)`
+export const BarContent = styled(Toolbar)`
   display: flex;
   justify-content: space-between;
 `

@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import PrivateRoute from './components/PrivateRoute'
-import Login from './components/pages/Login'
-import Home from './components/pages/Home'
-import Dashboard from './components/pages/admin/Dashboard'
+import PrivateRoute from 'components/PrivateRoute'
+import Login from 'pages/Login'
+import Home from 'pages/Home'
+import Dashboard from 'pages/admin/Dashboard'
 
 const Routes = () => {
   return (

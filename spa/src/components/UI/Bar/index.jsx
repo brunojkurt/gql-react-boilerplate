@@ -1,11 +1,11 @@
 import React from 'react'
-import { AppBar } from './styles'
+import { StyledBar } from './styles'
 
 const Bar = ({ children, ...rest }) => {
   return (
-    <AppBar {...rest}>
+    <StyledBar {...rest}>
       {children}
-    </AppBar>
+    </StyledBar>
   )
 }
 

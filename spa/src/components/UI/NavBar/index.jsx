@@ -1,10 +1,9 @@
 import React from 'react'
-import { Typography, Toolbar, Button } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 
-import { Bar } from '..'
-import { useAuth } from '../../../hooks/auth'
-import { Toolbar as StyledToolbar } from './styles'
+import { Bar, Button, Toolbar, Typography } from 'components/UI'
+import { useAuth } from 'hooks/auth'
+import { BarContent } from './styles'
 
 const NavBar = (props) => {
   const { title, ...rest } = props
@@ -14,7 +13,7 @@ const NavBar = (props) => {
   return (
     <>
       <Bar {...rest}>
-        <StyledToolbar>
+        <BarContent>
           <div>
             {title && (
               <Typography
@@ -40,7 +39,7 @@ const NavBar = (props) => {
                 Login
               </Button>
               )}
-        </StyledToolbar>
+        </BarContent>
       </Bar>
       {(!props.position || props.position === 'absolute' || props.position === 'fixed') && (
         <Toolbar />
