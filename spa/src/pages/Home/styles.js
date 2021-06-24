@@ -3,7 +3,6 @@ import { Container, Typography } from 'components/UI'
 
 export const HomeContainer = styled(Container)`
   padding-top: 5vh;
-  height: 100%;
 `
 export const Image = styled.img`
   src: ${({ src }) => `url(${src})`};

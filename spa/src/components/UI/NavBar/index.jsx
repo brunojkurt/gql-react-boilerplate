@@ -27,6 +27,7 @@ const NavBar = (props) => {
           {user?.name
             ? (
               <Button
+                color='primary'
                 onClick={() => history.push('/dashboard')}
               >
                 {user.name}
@@ -34,6 +35,7 @@ const NavBar = (props) => {
               )
             : (
               <Button
+                color='primary'
                 onClick={() => history.push('/login')}
               >
                 Login

@@ -1,7 +1,15 @@
 import React from 'react'
+import { Typography } from 'components/UI'
 
 const Users = () => {
-  return <h1>Users</h1>
+  return (
+    <Typography
+      variant='h4'
+      color='primary'
+    >
+      Users
+    </Typography>
+  )
 }
 
 export default Users

@@ -30,7 +30,11 @@ const Home = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <HomeTitle variant='h2' align='center'>
+          <HomeTitle
+            variant='h2'
+            align='center'
+            color='primary'
+          >
             {t('pages.home.welcome')}
           </HomeTitle>
         </Grid>

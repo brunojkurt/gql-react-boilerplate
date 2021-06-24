@@ -1,5 +1,6 @@
 import React from 'react'
 import { IoMdPeople } from 'react-icons/io'
+import { Typography } from 'components/UI'
 import { Dashboard as DashboardLayout } from 'components/UI/layouts'
 
 // Dashboard components
@@ -16,7 +17,12 @@ const Dashboard = () => {
   ]
   return (
     <DashboardLayout routes={routes}>
-      <h1>Dashboard</h1>
+      <Typography
+        variant='h4'
+        color='primary'
+      >
+        Dashboard
+      </Typography>
     </DashboardLayout>
   )
 }

@@ -3,7 +3,8 @@ import { Container, Paper } from 'components/UI'
 import { SiGooglesearchconsole } from 'react-icons/si'
 
 export const LoginContainer = styled(Container)`
-  height: 100vh;
+  height: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
 `
@@ -15,8 +16,9 @@ export const LogoWrapper = styled.div`
 export const Logo = styled(SiGooglesearchconsole)`
   font-size: 80px;
 `
-export const FormPaper = styled(Paper)`
-  margin-top: 20vh;
+export const FormPaper = styled(Paper)` 
+  width: 100%;
+  max-width: 450px;
   padding: 15px;
 `
 export const FormItem = styled.div`
