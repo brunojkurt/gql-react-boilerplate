@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { createMuiTheme } from '@material-ui/core/styles'
-import { ThemeProvider } from '@material-ui/styles'
+import { ThemeProvider, StylesProvider } from '@material-ui/styles'
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components'
 
 const CustomThemeProvider = ({ children }) => {
@@ -14,14 +14,15 @@ const CustomThemeProvider = ({ children }) => {
     fetchTheme()
   }, [])
 
+  // https://material-ui.com/customization/default-theme/#default-theme
   const light = createMuiTheme({
     palette: {
       type: 'light',
       primary: {
-        main: '#00072d'
+        main: '#020079'
       },
       secondary: {
-        main: '#0a2472'
+        main: '#0078e9'
       }
     }
   })
@@ -33,7 +34,7 @@ const CustomThemeProvider = ({ children }) => {
         main: '#FFF'
       },
       secondary: {
-        main: '#FFF000'
+        main: '#020079'
       }
     }
   })
@@ -54,9 +55,11 @@ const CustomThemeProvider = ({ children }) => {
 
   return (
     <ThemeProvider theme={{ ...themes[currentTheme], methods, currentTheme }}>
-      <StyledComponentsThemeProvider theme={themes[currentTheme]}>
-        {children}
-      </StyledComponentsThemeProvider>
+      <StylesProvider injectFirst>
+        <StyledComponentsThemeProvider theme={themes[currentTheme]}>
+          {children}
+        </StyledComponentsThemeProvider>
+      </StylesProvider>
     </ThemeProvider>
   )
 }
