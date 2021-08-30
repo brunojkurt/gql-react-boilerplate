@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { Bar, Button, Toolbar, Typography } from 'components/UI'
+import { Bar, Button, Toolbar, Typography } from 'components/UI/elements'
 import { useAuth } from 'hooks/auth'
 import { BarContent } from './styles'
 

@@ -1,5 +1,6 @@
 import React from 'react'
-import { NavBar, Grid, Box } from 'components/UI'
+import { NavBar } from 'components/UI/modules'
+import { Grid, Box } from 'components/UI/elements'
 
 import { HomeContainer, Image, Rotate, HomeTitle } from './styles'
 import { useI18n } from 'hooks/i18n'

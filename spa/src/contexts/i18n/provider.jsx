@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import I18nContext from './context'
-import locales from './locales'
+import locales from 'locales'
 
 const I18nProvider = ({ children }) => {
   const [currlanguage, setCurrLanguage] = useState(() => {

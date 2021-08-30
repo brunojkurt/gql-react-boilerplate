@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography } from 'components/UI'
+import { Typography } from 'components/UI/elements'
 
 const Users = () => {
   return (

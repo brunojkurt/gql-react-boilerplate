@@ -1,6 +1,6 @@
 import React from 'react'
 import { IoMdPeople } from 'react-icons/io'
-import { Typography } from 'components/UI'
+import { Typography } from 'components/UI/elements'
 import { Dashboard as DashboardLayout } from 'components/UI/layouts'
 
 // Dashboard components

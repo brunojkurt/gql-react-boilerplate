@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Drawer, Bar, Toolbar } from 'components/UI'
+import { Drawer, Bar, Toolbar } from 'components/UI/elements'
 import { Link as RouterLink } from 'react-router-dom'
 
 export const Root = styled.div`

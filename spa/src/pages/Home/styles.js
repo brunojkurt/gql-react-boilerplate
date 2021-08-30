@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Container, Typography } from 'components/UI'
+import { Container, Typography } from 'components/UI/elements'
 
 export const HomeContainer = styled(Container)`
   padding-top: 5vh;

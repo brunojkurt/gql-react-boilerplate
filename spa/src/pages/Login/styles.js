@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Container, Paper } from 'components/UI'
+import { Container, Paper } from 'components/UI/elements'
 import { SiGooglesearchconsole } from 'react-icons/si'
 
 export const LoginContainer = styled(Container)`

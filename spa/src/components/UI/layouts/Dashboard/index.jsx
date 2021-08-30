@@ -8,7 +8,7 @@ import {
   Typography,
   FormControlLabel,
   Switch as SwitchButton
-} from 'components/UI'
+} from 'components/UI/elements'
 import { IoIosHome } from 'react-icons/io'
 import { FiMenu, FiLogOut } from 'react-icons/fi'
 import { Router, Switch, Route, useHistory, useLocation } from 'react-router-dom'

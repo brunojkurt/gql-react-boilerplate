@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, TextField, Typography } from 'components/UI'
+import { Button, TextField, Typography } from 'components/UI/elements'
 import { LoginContainer, LogoWrapper, Logo, FormPaper, FormItem, ButtonWrapper } from './styles'
 import { UserAuthenticate } from 'gql'
 import { useApolloClient } from 'hooks/apollo'
