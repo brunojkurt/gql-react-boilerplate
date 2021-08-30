@@ -41,9 +41,7 @@ const AuthProvider = ({ children }) => {
     window.localStorage.removeItem('token')
   }
 
-  const isAuthenticated = () => {
-    return !!state.token
-  }
+  const isAuthenticated = () => !!state.token
 
   const contextData = {
     ...state,
