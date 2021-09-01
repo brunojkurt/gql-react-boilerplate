@@ -1,3 +1,5 @@
+import { gql } from '@apollo/client'
+
 export const Users = gql`
   query Users (
     $id: ID

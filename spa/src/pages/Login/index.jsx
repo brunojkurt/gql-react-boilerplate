@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { Button, TextField, Typography } from 'components/UI/elements'
-import { LoginContainer, LogoWrapper, Logo, FormPaper, FormItem, ButtonWrapper } from './styles'
-import { UserAuthenticate } from 'gql'
-import { useApolloClient } from 'hooks/apollo'
+import {
+  LoginContainer,
+  LogoWrapper,
+  Logo,
+  FormPaper,
+  FormItem,
+  ButtonWrapper
+} from './styles'
 import { useAuth } from 'hooks/auth'
+import { useGQL } from 'hooks/gql'
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
 
-  const client = useApolloClient()
   const { login, token } = useAuth()
+  const { mutations } = useGQL()
+  const { authenticate, loading } = mutations.user.useAuthenticate()
 
   useEffect(() => {
     const checkAuth = () => {
@@ -25,16 +31,15 @@ const Login = ({ history }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
 
-    await client.mutate({
-      mutation: UserAuthenticate,
+    await authenticate({
       variables: {
         email,
         password
       }
     })
       .then(async response => {
+        console.log(response)
         const { data } = response
         const { UserAuthenticate: authData } = data
         await login(authData.user, authData.token)
@@ -42,8 +47,6 @@ const Login = ({ history }) => {
       .catch(error => {
         window.alert(error.message)
       })
-
-    setLoading(false)
   }
 
   return (
