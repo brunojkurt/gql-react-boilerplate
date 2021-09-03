@@ -12,7 +12,6 @@
     "migrate:status": "knex --knexfile knexfile.js migrate:status",
     "seed:make": "knex --knexfile knexfile.js seed:make",
     "seed": "knex --knexfile knexfile.js seed:run",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest"
   },
   "author": "brunojkurt",
   "license": "ISC",
